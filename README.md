@@ -2470,13 +2470,12 @@ The output for a dropdown plugin in UI is as follows:
 
 ## Metadata
 
-Metadata is a piece of information that lets you describe or classify an asset/entry.
+Metadata is a piece of information that lets you describe or classify an asset/entry. You can manage your digital entities effectively and enable improved accessibility with additional metadata. This object manages all the CRUD operations you can perform with metadata, e.g., adding, updating, or deleting additional metadata.
 
-You can manage your digital entities effectively and enable improved accessibility with additional metadata.
 
 > Note: The Metadata feature allows users to update their asset metadata or entry metadata without incrementing the asset or entry version.
 
-### createMetaData(metadataConfig: IMetadataCreate)
+### createMetadata(metadataConfig: IMetadataCreate)
 
 ```ts
 IMetadataCreate {
@@ -2490,7 +2489,7 @@ IMetadataCreate {
 
 This method adds new metadata for an asset or entry. It accepts metadata configuration as required arguments. This config contains basic details that you need to identify the metadata object and other data you need for your app.
 
-### retrieveMetaData(metadataConfig: IMetadataRetrieve)
+### retrieveMetadata(metadataConfig: IMetadataRetrieve)
 
 ```ts
 IMetadateRetrieve {
@@ -2500,7 +2499,7 @@ IMetadateRetrieve {
 
 This method retrieves metadata for an asset or entry. It accepts metadata configuration as required arguments. This config contains basic details that you need to identify the metadata object you want to retrieve.
 
-### updateMetaData(metadataConfig: IMetadataUpdate)
+### updateMetadata(metadataConfig: IMetadataUpdate)
 
 ```ts
 IMetadataUpdate {
@@ -2511,7 +2510,7 @@ IMetadataUpdate {
 
 This method updates existing metadata for an asset or entry. It accepts metadata configuration as required arguments. This config contains basic details that you need to identify the metadata object and other data you want to update.
 
-### deleteMetaData(metadataConfig: IMetadataDelete)
+### deleteMetadata(metadataConfig: IMetadataDelete)
 
 ```ts
 IMetadateDelete {
