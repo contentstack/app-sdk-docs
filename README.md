@@ -2472,14 +2472,13 @@ The output for a dropdown plugin in UI is as follows:
 
 Metadata is a piece of information that lets you describe or classify an asset/entry. You can manage your digital entities effectively and enable improved accessibility with additional metadata. This object manages all the CRUD operations you can perform with metadata, e.g., adding, updating, or deleting additional metadata.
 
-
 > Note: The Metadata feature allows users to update their asset metadata or entry metadata without incrementing the asset or entry version.
 
 ### createMetadata(metadataConfig: IMetadataCreate)
 
 ```ts
 IMetadataCreate {
-    entry_uid: string;
+    entity_uid: string;
     type?: "asset" | "entry"; // default: "asset"
     _content_type_uid?: string;
     locale?: string;
