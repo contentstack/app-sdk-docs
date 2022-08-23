@@ -51,22 +51,22 @@ Locations refers to the position or the placement of the app (sidebar widget, cu
 
 **Kind**: global class
 
-[ContentstackAppSdk](#ContentstackAppSdk)
+[ContentstackAppSDK](#ContentstackAppSDK)
 
--   [.SDK_VERSION](#ContentstackAppSdk.SDK_VERSION) : string
--   [.init()](#ContentstackAppSdk.init) ⇒ [Promise](#external_Promise)
+-   [.SDK_VERSION](#ContentstackAppSDK.SDK_VERSION) : string
+-   [.init()](#ContentstackAppSDK.init) ⇒ [Promise](#external_Promise)
 
-### ContentstackAppSdk.SDK_VERSION : string
+### ContentstackAppSDK.SDK_VERSION : string
 
 The above defines the version of the Contentstack UI App SDK.
 
-**Kind**: static property of [ContentstackAppSdk](#ContentstackAppSdk)
+**Kind**: static property of [ContentstackAppSDK](#ContentstackAppSDK)
 
-### ContentstackAppSdk.init() ⇒ [Promise](#external_Promise)
+### ContentstackAppSDK.init() ⇒ [Promise](#external_Promise)
 
-To start using the APP SDK, you first need to include the Contentstack UI App SDK and Contentstack Venus UI Stylesheet in your HTML file and then call **ContentstackAppSdk.init** on component mount.
+To start using the APP SDK, you first need to include the Contentstack UI App SDK and Contentstack Venus UI Stylesheet in your HTML file and then call **ContentstackAppSDK.init** on component mount.
 
-**Kind**: The static method of [ContentstackAppSdk](#ContentstackAppSdk)
+**Kind**: The static method of [ContentstackAppSDK](#ContentstackAppSDK)
 
 **Returns**: [Promise](#external_Promise) - A promise object which will be resolved with an instance of the [Location](#Location) class which is instantiated using the data received from the Contentstack UI.
 
@@ -74,7 +74,7 @@ To start using the APP SDK, you first need to include the Contentstack UI App SD
 
 ```js
 // javascript
-ContentstackAppSdk.init().then(function (appSdk) {
+ContentstackAppSDK.init().then(function (appSdk) {
     // Get AppConfigWidget object
     // this is only initialized on the App configuration page.
     // on other locations this will return undefined.
@@ -102,7 +102,7 @@ ContentstackAppSdk.init().then(function (appSdk) {
 
 ```js
 // javascript
-ContentstackAppSdk.init().then(function (appSdk) {
+ContentstackAppSDK.init().then(function (appSdk) {
     // Get CustomField object
     // this is only initialized on the Entry create/edit page.
     // on other locations this will return undefined.
@@ -120,7 +120,7 @@ ContentstackAppSdk.init().then(function (appSdk) {
 
 ```js
 // javascript
-ContentstackAppSdk.init().then(function (location) {
+ContentstackAppSDK.init().then(function (location) {
     // Get SidebarWidget object
     // this is only initialized on the Entry edit page.
     // on other locations this will return undefined.
@@ -138,7 +138,7 @@ ContentstackAppSdk.init().then(function (location) {
 
 ```js
 // javascript
-ContentstackAppSdk.init().then(function (location) {
+ContentstackAppSDK.init().then(function (location) {
     // Get SidebarWidget object
     // this is only initialized on the Entry edit page.
     // on other locations this will return undefined.
