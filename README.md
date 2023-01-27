@@ -440,6 +440,8 @@ It is a class representing the current stack in Contentstack UI.
 -   [.getEnvironments(query, params)](#Stack+getEnvironments) ⇒ Object
 -   [.getLocale(code, params)](#Stack+getLocale) ⇒ Object
 -   [.getLocales(query, params)](#Stack+getLocales) ⇒ Object
+-   [.getReleases(query, params)](#stackgetreleasesquery-params--object) ⇒ Object
+-   [.getPublishes(query, params)](#stackgetpublishesquery-params--object) ⇒ Object
 
 ### stack.ContentType
 
@@ -1335,6 +1337,32 @@ This API allows you to retrieve the locales of a stack using the [Languages API]
 **Kind**: instance method of [Stack](#Stack)
 
 **Returns**: Object - A Promise object which will be resolved with details of the locales.
+
+| **Parameter** | **Type** | **Description**                      |
+| :------------ | :------- | :----------------------------------- |
+| query         | Object   | Query for the GET call               |
+| params        | Object   | Optional parameters for the GET call |
+
+### stack.getReleases(query, params) ⇒ Object
+
+This API allows you to retrieve details of releases of a stack using the [Releases API](https://www.contentstack.com/docs/developers/apis/content-management-api/#get-all-releases) requests. Method returns a Promise object.
+
+**Kind**: instance method of [Stack](#Stack)
+
+**Returns**: Object - A Promise object which will be resolved with details of the releases.
+
+| **Parameter** | **Type** | **Description**                      |
+| :------------ | :------- | :----------------------------------- |
+| query         | Object   | Query for the GET call               |
+| params        | Object   | Optional parameters for the GET call |
+
+### stack.getPublishes(query, params) ⇒ Object
+
+This API allows you to retrieve details of publish queue of a stack using the [Publish Queue API](https://www.contentstack.com/docs/developers/apis/content-management-api/#get-publish-queue) requests. Method returns a Promise object.
+
+**Kind**: instance method of [Stack](#Stack)
+
+**Returns**: Object - A Promise object which will be resolved with details of the publish queue.
 
 | **Parameter** | **Type** | **Description**                      |
 | :------------ | :------- | :----------------------------------- |
