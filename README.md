@@ -442,7 +442,7 @@ It is a class representing the current stack in Contentstack UI.
 -   [.getLocales(query, params)](#Stack+getLocales) ⇒ Object
 -   [.getReleases(query, params)](#stackgetreleasesquery-params--object) ⇒ Object
 -   [.getPublishes(query, params)](#stackgetpublishesquery-params--object) ⇒ Object
--   [.search(queries, apiKey)](#stacksearchqueries-stacksearchquery-apikey-string--null--promise) => [Promise](#promise)
+-   [.search(queries, apiKey)](#stacksearchqueries-stacksearchquery-apikey-string--null--promiseobject) => [Promise](#promise)
 -   [.getAllStacks(options)](#stackgetallstacksoptions-orguid---params---promiseobject): [Promise](#promise)
 -   [.getCurrentBranch()](#stackgetcurrentbranch--branchdetail--null) ⇒ Object | null
 -   [.getAllBranch()](#stackgetallbranches--branchdetail--null) ⇒ Object[]
@@ -1373,9 +1373,9 @@ This API allows you to retrieve details of publish queue of a stack using the [P
 | query         | Object   | Query for the GET call               |
 | params        | Object   | Optional parameters for the GET call |
 
-### stack.search(queries: StackSearchQuery, apiKey?: string | null) => Promise<Object>
+### stack.search(queries: StackSearchQuery, apiKey?: string | null) => [Promise](#promise)\<Object\>
 
-This API allows you to search for content in a stack. It uses the API used by the Contentstack search bar. By default, the current stack is searched. Method returns a Promise object.
+This API allows you to search for content in a stack. It uses the API used by the Contentstack Search Bar. By default, the current stack is searched. Method returns a Promise object.
 
 **Kind**: instance method of [Stack](#Stack)
 
@@ -1425,7 +1425,7 @@ This API allows you to retrieve details of all the stacks of an organization usi
 
 ### stack.getCurrentBranch() ⇒ [BranchDetail](#branchdetail) | null
 
-This API allows you to retrieve details of current branch of the stack if available. If the Branches plan is not available, it will return `null`.
+This API allows you to retrieve details of current branch of the stack, if available. If the Branches plan is not available, it will return `null`.
 
 > Note: Branch feature is plan based.
 
@@ -1435,7 +1435,7 @@ This API allows you to retrieve details of current branch of the stack if availa
 
 ### stack.getAllBranches() ⇒ [BranchDetail](#branchdetail)[] | null
 
-This API allows you to retrieve details of all the available branch in the stack. If the Branches plan is not available, it will return an empty array.
+This API allows you to retrieve details of all the available branches in the stack. If the Branches plan is not available, it will return an empty array.
 
 > Note: Branch feature is plan based.
 
