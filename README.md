@@ -440,6 +440,12 @@ It is a class representing the current stack in Contentstack UI.
 -   [.getEnvironments(query, params)](#Stack+getEnvironments) ⇒ Object
 -   [.getLocale(code, params)](#Stack+getLocale) ⇒ Object
 -   [.getLocales(query, params)](#Stack+getLocales) ⇒ Object
+-   [.getReleases(query, params)](#stackgetreleasesquery-params--object) ⇒ Object
+-   [.getPublishes(query, params)](#stackgetpublishesquery-params--object) ⇒ Object
+-   [.search(queries, apiKey)](#stacksearchqueries-stacksearchquery-apikey-string--null--promiseobject) => [Promise](#promise)
+-   [.getAllStacks(options)](#stackgetallstacksoptions-orguid---params---promiseobject): [Promise](#promise)
+-   [.getCurrentBranch()](#stackgetcurrentbranch--branchdetail--null) ⇒ Object | null
+-   [.getAllBranch()](#stackgetallbranches--branchdetail--null) ⇒ Object[]
 
 ### stack.ContentType
 
@@ -1340,6 +1346,117 @@ This API allows you to retrieve the locales of a stack using the [Languages API]
 | :------------ | :------- | :----------------------------------- |
 | query         | Object   | Query for the GET call               |
 | params        | Object   | Optional parameters for the GET call |
+
+### stack.getReleases(query, params) ⇒ Object
+
+This API allows you to retrieve details of releases of a stack using the [Releases API](https://www.contentstack.com/docs/developers/apis/content-management-api/#get-all-releases) requests. Method returns a Promise object.
+
+**Kind**: instance method of [Stack](#Stack)
+
+**Returns**: Object - A Promise object which will be resolved with details of the releases.
+
+| **Parameter** | **Type** | **Description**                      |
+| :------------ | :------- | :----------------------------------- |
+| query         | Object   | Query for the GET call               |
+| params        | Object   | Optional parameters for the GET call |
+
+### stack.getPublishes(query, params) ⇒ Object
+
+This API allows you to retrieve details of publish queue of a stack using the [Publish Queue API](https://www.contentstack.com/docs/developers/apis/content-management-api/#get-publish-queue) requests. Method returns a Promise object.
+
+**Kind**: instance method of [Stack](#Stack)
+
+**Returns**: Object - A Promise object which will be resolved with details of the publish queue.
+
+| **Parameter** | **Type** | **Description**                      |
+| :------------ | :------- | :----------------------------------- |
+| query         | Object   | Query for the GET call               |
+| params        | Object   | Optional parameters for the GET call |
+
+### stack.search(queries: StackSearchQuery, apiKey?: string | null) => [Promise](#promise)\<Object\>
+
+This API allows you to search for content in a stack. It uses the API used by the Contentstack Search Bar. By default, the current stack is searched. Method returns a Promise object.
+
+**Kind**: instance method of [Stack](#Stack)
+
+**Returns**: Object - A Promise object which will be resolved with details of the stacks in the organization.
+
+| **Parameter** | **Type** | **Description**                                         |
+| :------------ | :------- | :------------------------------------------------------ |
+| queries       | Object   | Queries for the GET call                                |
+| apiKey        | string   | Optional parameters to search stack of specific API key |
+
+#### StackSearchQuery
+
+This is the type of the `queries` parameter of the `search` method.
+
+```typescript
+StackSearchQuery {
+    type: "entries" | "assets";
+    skip?: number;
+    limit?: number;
+    include_publish_details?: boolean;
+    include_unpublished?: boolean;
+    include_workflow?: boolean;
+    include_fields?: boolean;
+    include_rules?: boolean;
+    include_title_field_uid?: boolean;
+    query?: AnyObject;
+    search?: string;
+    save_recent_search?: boolean;
+    desc?: string;
+}
+```
+
+### stack.getAllStacks(options: {orgUid = "", params = {}}): [Promise](#promise)<Object[]>
+
+This API allows you to retrieve details of all the stacks of an organization using the [Get all Stacks API](https://www.contentstack.com/docs/developers/apis/content-management-api/#get-all-stacks) requests. Method returns a Promise object.
+
+> Note: In order to fetch the stacks, you must have access to the stacks.
+
+**Kind**: instance method of [Stack](#Stack)
+
+**Returns**: Object - A Promise object which will be resolved with details of the stacks in the organization.
+
+| **Parameter**  | **Type** | **Description**                               |
+| :------------- | :------- | :-------------------------------------------- |
+| options.orgUid | string   | Optional parameter to change the organization |
+| options.params | Object   | Optional parameters for the GET call          |
+
+### stack.getCurrentBranch() ⇒ [BranchDetail](#branchdetail) | null
+
+This API allows you to retrieve details of current branch of the stack, if available. If the Branches plan is not available, it will return `null`.
+
+> Note: Branch feature is plan based.
+
+**Kind**: instance method of [Stack](#Stack)
+
+**Returns**: Object - An object which will be resolved with details of the current branch.
+
+### stack.getAllBranches() ⇒ [BranchDetail](#branchdetail)[] | null
+
+This API allows you to retrieve details of all the available branches in the stack. If the Branches plan is not available, it will return an empty array.
+
+> Note: Branch feature is plan based.
+
+**Kind**: instance method of [Stack](#Stack)
+
+**Returns**: Array - An Array of object which will be resolved with details of all the branches.
+
+#### BranchDetail
+
+This is the interface of the branch returned by the `stack.getCurrentBranch()` and `stack.getAllBranches()` methods.
+
+```typescript
+BranchDetail {
+    api_key: string;
+    uid: string;
+    source: string;
+    alias: {
+        uid: string;
+    }[];
+}
+```
 
 ## The Store Class used by an extension to store your data in [localStorage](#external_localStorage).
 
@@ -2497,6 +2614,10 @@ IMetadateRetrieve {
 ```
 
 This method retrieves metadata for an asset or entry. It accepts metadata configuration as required arguments. This config contains basic details that you need to identify the metadata object you want to retrieve.
+
+### retrieveAllMetaData(metadataConfig: AnyObject)
+
+You can use Get all Metadata to fetch the metadata information of all the entries/assets present in your stack.
 
 ### updateMetadata(metadataConfig: IMetadataUpdate)
 
