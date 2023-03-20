@@ -41,6 +41,7 @@ Locations refers to the position or the placement of the app (sidebar widget, cu
 -   **[DashboardWidget](#DashboardWidget)**: It's an object representing the Dashboard widget reference in the Contentstack UI.
 -   **[SidebarWidget](#SidebarWidget)**: It's an object representing the current Sidebar widget reference in the Contentstack UI.
 -   **[AppConfigWidget](#AppConfigWidget)**: It's an object representing the current App configuration for the current App in the Contentstack UI.
+-   **[EntryfieldLocation](#EntryFieldLocation)**: It's an object representing the current Entry field reference over the field in the Contentstack UI.
 
 # External
 
@@ -149,6 +150,24 @@ ContentstackAppSDK.init().then(function (location) {
 
     // fetch stack information
     var stackData = await appSdk.stack.getData();
+});
+```
+
+**Example** _(Entry field location)_
+
+```js
+// javascript
+ContentstackAppSDK.init().then(function (appSdk) {
+    // Get EntryFieldLocation object
+    // this is only initialized on the Entry create/edit page.
+    // on other locations this will return undefined.
+    var entryFieldLocation = await appSdk.location.EntryFieldLocation;
+
+    // fetch app configuration
+    var appConfig = await appSdk.getConfig();
+
+    // fetch entry field information
+    var fieldData = await entryFieldLocation.entry.getData();
 });
 ```
 
@@ -261,19 +280,19 @@ It is an object representing the current Asset Sidebar Widget reference in the C
 
 This method returns the object representing the current asset.
 
-## setData(asset: Partial&lt;AssetData>)
+### setData(asset: Partial&lt;AssetData>)
 
 This method modifies the properties of the current asset.
 
-## syncAsset()
+### syncAsset()
 
 If your asset has been modified externally, you can use this method to load the new asset and sync its settings with the current asset.
 
-## updateWidth(width: number)
+### updateWidth(width: number)
 
 This method is used to modify the width of the asset sidebar panel. Using this method, you can resize the panel depending on the resolution of your content.
 
-## replaceAsset(file: File)
+### replaceAsset(file: File)
 
 This method is used to replace the current asset with a new file. Unlike `setData()`, where you can only modify the properties, you can use this method to replace the actual file.
 
@@ -319,6 +338,312 @@ This method gives you the complete installation data.
 This method updates installation data for the app.
 
 **Kind**: instance property of [AppConfigWidget](#AppConfigWidget)
+
+## EntryFieldLocation
+
+It is an object representing the current Custom field reference in the Contentstack UI.
+
+**Kind**: The instance property of [AppConfigWidget](#supported-locations)
+
+[EntryFieldLocation](#EntryFieldLocation)
+
+-   [.fieldConfig](#Location+fieldConfig) : Object
+-   [.field](#Location+field) : [Field](#Field)
+-   [.entry](#Location+entry) : [Entry](#Entry)
+-   [.frame](#frame) : [Frame](#frame)
+-   [.stack](#stack) : [Stack](#stack)
+
+### EntryFieldLocation.fieldConfig : Object
+
+The above method gives you the instance configuration parameters set from the content type builder page in the field settings. This is only available for the Custom Field location.
+
+**Kind**: instance property of [EntryFieldLocation](#EntryFieldLocation)
+
+### EntryFieldLocation.field : [Field](#Field)
+
+This method gives you the custom field object which allows you to interact with the field. Please note that it is available only for the Custom Field location.
+
+**Kind**: instance property of [EntryFieldLocation](#EntryFieldLocation)
+
+-   [Field](#Field)
+    -   [.uid](#Field+uid) : <code>string</code>
+    -   [.data_type](#Field+data_type) : <code>string</code>
+    -   [.schema](#Field+schema) : <code>Object</code>
+    -   [.setData(data)](#Field+setData) ⇒ [<code>Promise</code>](#external_Promise)
+    -   [.getData(options)](#Field+getData) ⇒ <code>Object</code> \| <code>string</code> \| <code>number</code>
+
+<a name="Field+uid"></a>
+
+#### field.uid : <code>string</code>
+
+The UID of the current field is defined in the content type of the entry.
+
+**Kind**: instance property of [<code>Field</code>](#Field)
+<a name="Field+data_type"></a>
+
+#### field.data_type : <code>string</code>
+
+The data type of the current field is set using this method.
+
+**Kind**: instance property of [<code>Field</code>](#Field)
+<a name="Field+schema"></a>
+
+#### field.schema : <code>Object</code>
+
+The schema of the current field (schema of fields such as ‘Single Line Textbox’, ‘Number’,
+and so on) is set using this method.
+
+**Kind**: instance property of [<code>Field</code>](#Field)
+<a name="Field+setData"></a>
+
+#### field.setData(data) ⇒ [<code>Promise</code>](#external_Promise)
+
+Sets the data for the current field.
+
+**Kind**: instance method of [<code>Field</code>](#Field)
+**Returns**: [<code>Promise</code>](#external_Promise) - A promise object which is resolved when data is set for a field. Note: The data set by this function will only be saved when user saves the entry.
+
+| Param | Type                                                              | Description                 |
+| ----- | ----------------------------------------------------------------- | --------------------------- |
+| data  | <code>Object</code> \| <code>string</code> \| <code>number</code> | Data to be set on the field |
+
+<a name="Field+getData"></a>
+
+#### field.getData(options) ⇒ <code>Object</code> \| <code>string</code> \| <code>number</code>
+
+Gets the data of the current field
+
+**Kind**: instance method of [<code>Field</code>](#Field)
+**Returns**: <code>Object</code> \| <code>string</code> \| <code>number</code> - Returns the field data.
+
+| Param            | Type                 | Description                                                                                                                                                                                |
+| ---------------- | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| options          | <code>Object</code>  | Options object for get Data method.                                                                                                                                                        |
+| options.resolved | <code>boolean</code> | If the resolved parameter is set to true for the File field, then the method will return a resolved asset object along with all the field metadata, e.g. 'field.getData({resolved:true})'. |
+
+<a name="Field+setFocus"></a>
+
+#### field.setFocus() ⇒ <code>Object</code>
+
+Sets the focus for a field when an extension is being used. This method shows user presence and highlights the extension field that the user is currently accessing in Contentstack UI.
+
+**Kind**: instance method of [<code>Field</code>](#Field)
+**Returns**: <code>Object</code> - A promise object which is resolved when Contentstack UI returns an acknowledgement of the focused state.
+<a name="Field+onChange"></a>
+
+#### field.onChange(callback)
+
+The field.onChange() function is called when another extension programmatically changes the data of the current extension field using the field.setData() function. This function is only available for extension fields that support the following data types: text, number, boolean, or date.
+
+**Kind**: instance method of [<code>Field</code>](#Field)
+
+| Param    | Type                  | Description                                           |
+| -------- | --------------------- | ----------------------------------------------------- |
+| callback | <code>function</code> | The function to be called when an entry is published. |
+
+### EntryFieldLocation.entry :
+
+This method gives you the entry object which allows you to interact with the current entry. Please note that it is not available for the Dashboard Widget location.
+
+**Kind**: instance property of [EntryFieldLocation](#EntryFieldLocation)
+
+-   [Entry](#Entry)
+    -   [.content_type](#entry) : <code>Object</code>
+    -   [.locale](#entrylocale--string) : <code>string</code>
+    -   [.getData()](#entrygetdata--object) ⇒ <code>Object</code>
+    -   [.getField(uid, options?)](#entrygetfielduid-options--object) ⇒ <code>Object</code>
+    -   [.onSave(callback)](#entryonsavecallback)
+    -   [.onChange(callback)](#Entry+onChange)
+    -   [.onPublish(callback)](#Entry+onPublish)
+    -   [.onUnPublish(callback)](#Entry+onUnPublish)
+    -   [.getTags()](#entrygettagsoptions--array)
+    -   [.setTags(tags)](#entrysettagstags--array)
+
+<a name="EntryFieldLocation+Entry+content_type"></a>
+
+#### entry.content_type : <code>Object</code>
+
+Gets the content type of the current entry.
+
+**Kind**: instance property of [<code>Entry</code>](#Entry)
+
+<a name="EntryFieldLocation+Entry+locale"></a>
+
+#### entry.locale : <code>string</code>
+
+Gets the locale of the current entry.
+
+**Kind**: instance property of [<code>Entry</code>](#Entry)
+
+<a name="EntryFieldLocation+Entry+getData"></a>
+
+#### entry.getData() ⇒ <code>Object</code>
+
+Gets data of the current entry.
+
+**Kind**: instance method of [<code>Entry</code>](#Entry)
+**Returns**: <code>Object</code> - Returns entry data.
+
+<a name="EntryFieldLocation+Entry+getField"></a>
+
+#### entry.getField(uid, options?) ⇒ <code>Object</code>
+
+Gets the field object which allows you to interact with the field.
+This object will support all the methods and properties that work with extension.field.
+Note: For fields initialized using the getFields function, the setData function currently works only for the following fields: as single_line, multi_line, RTE, markdown, select, number, boolean, date, link, and extension of data type text, number, boolean, and date.
+
+**Kind**: instance method of [<code>Entry</code>](#Entry)
+**Returns**: <code>Object</code> - Field object
+
+| Param                    | Type                 | Description                              |
+| ------------------------ | -------------------- | ---------------------------------------- |
+| uid                      | <code>string</code>  | Unique ID of the field                   |
+| options.useUnsavedSchema | <code>boolean</code> | Gets the unsaved draft data of the field |
+
+**Example**
+
+```js
+var field = entry.getField("field_uid");
+var fieldSchema = field.schema;
+var fieldUid = field.uid;
+var fieldData = field.getData();
+```
+
+<a name="EntryFieldLocation+Entry+onSave"></a>
+
+#### entry.onSave(callback)
+
+This function executes the callback function every time an entry is saved.
+
+**Kind**: instance method of [<code>Entry</code>](#Entry)
+
+| Param    | Type                  | Description                                       |
+| -------- | --------------------- | ------------------------------------------------- |
+| callback | <code>function</code> | The function to be called when an entry is saved. |
+
+<a name="EntryFieldLocation+Entry+onChange"></a>
+
+#### entry.onChange(callback)
+
+The onChange() function executes the callback function every time an entry has been updated.
+
+**Kind**: instance method of [<code>Entry</code>](#Entry)
+
+| Param    | Type                  | Description                                         |
+| -------- | --------------------- | --------------------------------------------------- |
+| callback | <code>function</code> | The function to be called when an entry is updated. |
+
+<a name="EntryFieldLocation+Entry+onPublish"></a>
+
+#### entry.onPublish(callback)
+
+The onPublish() function executes the callback function every time an entry has been published with the respective payload.
+
+**Kind**: instance method of [<code>Entry</code>](#Entry)
+
+| Param    | Type                  | Description                                           |
+| -------- | --------------------- | ----------------------------------------------------- |
+| callback | <code>function</code> | The function to be called when an entry is published. |
+
+<a name="EntryFieldLocation+Entry+onUnPublish"></a>
+
+#### entry.onUnPublish(callback)
+
+The onPublish() function executes the callback function every time an entry has been unpublished with the respective payload.
+
+**Kind**: instance method of [<code>Entry</code>](#Entry)
+
+| Param    | Type                  | Description                                             |
+| -------- | --------------------- | ------------------------------------------------------- |
+| callback | <code>function</code> | The function to be called when an entry is unpublished. |
+
+<a name="EntryFieldLocation+Entry+getTags"></a>
+
+#### entry.getTags(options?) ⇒ <code>Array</code>
+
+Gets the tags of the current entry. This method gets the saved tags by default, but you can also get the draft tags by setting the options.useUnsavedSchema parameter.
+
+**Kind**: instance method of [<code>Entry</code>](#Entry)
+**Returns**: <code>Array</code> - List of tags
+
+| Param                    | Type                 | Description                              |
+| ------------------------ | -------------------- | ---------------------------------------- |
+| options.useUnsavedSchema | <code>boolean</code> | Gets the unsaved draft data of the field |
+
+<a name="EntryFieldLocation+Entry+setTags"></a>
+
+#### entry.setTags(tags) ⇒ <code>Array</code>
+
+Sets the tags in the entry
+
+**Kind**: instance method of [<code>Entry</code>](#Entry)
+**Returns**: <code>Array</code> - List of tags
+
+| Param | Type               | Description          |
+| ----- | ------------------ | -------------------- |
+| tags  | <code>Array</code> | The tags to be saved |
+
+### EntryFieldLocation.frame : [Frame](#Frame)
+
+The frame object provides users with methods that allow them to adjust the size of the iframe containing the location. Note that it is not available for the custom widgets location.
+
+**Kind**: instance property of [EntryFieldLocation](#EntryFieldLocation)
+
+### EntryFieldLocation.stack : [Stack](#Stack)
+
+This method returns the stack object which allows users to read and manipulate a range of objects in a stack.
+
+**Kind**: instance property of [EntryFieldLocation](#EntryFieldLocation)
+
+### EntryFieldLocation.frame: [Frame](#Frame)
+
+The frame object provides users with methods that allow them to adjust the size of the iframe containing the location.
+
+**Kind**: instance property of [EntryFieldLocation](#EntryFieldLocation)
+
+[frame](#frame)
+
+-   [.enableResizing()](#frame+enableResizing) ⇒ [Promise](#external_Promise)
+-   [.onDashboardResize(callback)](#frame+onDashboardResize) ⇒ boolean
+-   [.updateDimension({height?, width?})](#frameupdatedimensionheight-width--promise) ⇒ [Promise](#external_Promise)
+-   [.enableAutoResizing()](#frame+enableAutoResizing) ⇒ [frame](#frame)
+-   [.disableAutoResizing()](#frame+disableAutoResizing) ⇒ [frame](#frame)
+
+#### frame.enableResizing() ⇒ [Promise](#external_Promise)
+
+This method activates the resize button that gives you the provision to resize your Dashboard Widget.
+
+**Kind**: instance method of [frame](#frame)
+
+**Returns**: [Promise](#external_Promise) - A promise object which will resolve when a resize button is visible on the Dashboard Widget.
+
+#### frame.updateDimension({height?, width?}) ⇒ [Promise](#external_Promise)
+
+This method updates the extension dimension on the Contentstack UI. If the dimension is not provided, it will update the dimension of the extension to the dimension of the content.
+
+**Kind**: instance method of [frame](#frame)
+
+**Returns**: [Promise](#external_Promise) - A promise object which will be resolved when Contentstack UI sends an acknowledgement stating that the height has been updated.
+
+| **Parameter** | **Type**         | **Description**                     |
+| :------------ | :--------------- | :---------------------------------- |
+| height        | string \| number | Desired height of the iframe window |
+
+#### frame.enableAutoResizing() ⇒ [frame](#frame)
+
+This method enables the auto resizing of the extension height.
+
+**Kind**: instance method of [frame](#frame)
+
+**Returns**: [frame](#frame)
+
+#### frame.disableAutoResizing() ⇒ [frame](#frame)
+
+This method disables the auto resizing of the extension height.
+
+**Kind**: instance method of [frame](#frame)
+
+**Returns**: [frame](#frame).
 
 ## frame
 
