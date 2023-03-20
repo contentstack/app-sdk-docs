@@ -347,17 +347,11 @@ It is an object representing the current Custom field reference in the Contentst
 
 [EntryFieldLocation](#EntryFieldLocation)
 
--   [.fieldConfig](#Location+fieldConfig) : Object
 -   [.field](#Location+field) : [Field](#Field)
 -   [.entry](#Location+entry) : [Entry](#Entry)
 -   [.frame](#frame) : [Frame](#frame)
 -   [.stack](#stack) : [Stack](#stack)
 
-### EntryFieldLocation.fieldConfig : Object
-
-The above method gives you the instance configuration parameters set from the content type builder page in the field settings. This is only available for the Custom Field location.
-
-**Kind**: instance property of [EntryFieldLocation](#EntryFieldLocation)
 
 ### EntryFieldLocation.field : [Field](#Field)
 
@@ -421,14 +415,7 @@ Gets the data of the current field
 | options          | <code>Object</code>  | Options object for get Data method.                                                                                                                                                        |
 | options.resolved | <code>boolean</code> | If the resolved parameter is set to true for the File field, then the method will return a resolved asset object along with all the field metadata, e.g. 'field.getData({resolved:true})'. |
 
-<a name="Field+setFocus"></a>
 
-#### field.setFocus() ⇒ <code>Object</code>
-
-Sets the focus for a field when an extension is being used. This method shows user presence and highlights the extension field that the user is currently accessing in Contentstack UI.
-
-**Kind**: instance method of [<code>Field</code>](#Field)
-**Returns**: <code>Object</code> - A promise object which is resolved when Contentstack UI returns an acknowledgement of the focused state.
 <a name="Field+onChange"></a>
 
 #### field.onChange(callback)
@@ -443,7 +430,7 @@ The field.onChange() function is called when another extension programmatically 
 
 ### EntryFieldLocation.entry :
 
-This method gives you the entry object which allows you to interact with the current entry. Please note that it is not available for the Dashboard Widget location.
+This method gives you the entry, object which allows you to interact with the current entry. Please note that it is not available for the Dashboard Widget location.
 
 **Kind**: instance property of [EntryFieldLocation](#EntryFieldLocation)
 
@@ -488,9 +475,9 @@ Gets data of the current entry.
 
 #### entry.getField(uid, options?) ⇒ <code>Object</code>
 
-Gets the field object which allows you to interact with the field.
-This object will support all the methods and properties that work with extension.field.
-Note: For fields initialized using the getFields function, the setData function currently works only for the following fields: as single_line, multi_line, RTE, markdown, select, number, boolean, date, link, and extension of data type text, number, boolean, and date.
+It gets the field object, allowing you to interact with it.
+This object will support all the methods and properties that work with the extension.field.
+Note: For fields initialized using the getFields function, the setData() function currently works only for the following fields: single_line, multi_line, RTE, markdown, select, number, boolean, date, link, and extension of data type text, number, boolean, and date.
 
 **Kind**: instance method of [<code>Entry</code>](#Entry)
 **Returns**: <code>Object</code> - Field object
@@ -513,7 +500,7 @@ var fieldData = field.getData();
 
 #### entry.onSave(callback)
 
-This function executes the callback function every time an entry is saved.
+This onSave() function executes the callback function every time an entry is saved.
 
 **Kind**: instance method of [<code>Entry</code>](#Entry)
 
@@ -601,21 +588,10 @@ The frame object provides users with methods that allow them to adjust the size 
 
 **Kind**: instance property of [EntryFieldLocation](#EntryFieldLocation)
 
-[frame](#frame)
-
--   [.enableResizing()](#frame+enableResizing) ⇒ [Promise](#external_Promise)
--   [.onDashboardResize(callback)](#frame+onDashboardResize) ⇒ boolean
 -   [.updateDimension({height?, width?})](#frameupdatedimensionheight-width--promise) ⇒ [Promise](#external_Promise)
 -   [.enableAutoResizing()](#frame+enableAutoResizing) ⇒ [frame](#frame)
 -   [.disableAutoResizing()](#frame+disableAutoResizing) ⇒ [frame](#frame)
 
-#### frame.enableResizing() ⇒ [Promise](#external_Promise)
-
-This method activates the resize button that gives you the provision to resize your Dashboard Widget.
-
-**Kind**: instance method of [frame](#frame)
-
-**Returns**: [Promise](#external_Promise) - A promise object which will resolve when a resize button is visible on the Dashboard Widget.
 
 #### frame.updateDimension({height?, width?}) ⇒ [Promise](#external_Promise)
 
@@ -625,9 +601,11 @@ This method updates the extension dimension on the Contentstack UI. If the dimen
 
 **Returns**: [Promise](#external_Promise) - A promise object which will be resolved when Contentstack UI sends an acknowledgement stating that the height has been updated.
 
-| **Parameter** | **Type**         | **Description**                     |
-| :------------ | :--------------- | :---------------------------------- |
-| height        | string \| number | Desired height of the iframe window |
+| **Parameter** | **Type** | **Description**                     |
+| :------------ | :------- | :---------------------------------- |
+| config.height | number   | Desired height of the iframe window |
+| config.width  | number   | Desired width of the iframe window  |
+
 
 #### frame.enableAutoResizing() ⇒ [frame](#frame)
 
