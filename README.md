@@ -355,7 +355,7 @@ It is an object representing the current Custom field reference in the Contentst
 
 ### EntryFieldLocation.field : [Field](#Field)
 
-This method gives you the custom field object which allows you to interact with the field. Please note that it is available only for the Custom Field location.
+This method gives you the custom field object which allows you to interact with the field. Please note that it is available only for the Custom Field UI location.
 
 **Kind**: instance property of [EntryFieldLocation](#EntryFieldLocation)
 
@@ -395,7 +395,7 @@ and so on) is set using this method.
 Sets the data for the current field.
 
 **Kind**: instance method of [<code>Field</code>](#Field)
-**Returns**: [<code>Promise</code>](#external_Promise) - A promise object which is resolved when data is set for a field. Note: The data set by this function will only be saved when user saves the entry.
+**Returns**: [<code>Promise</code>](#external_Promise) - A promise object which is resolved when data is set for a field. Note: The data set by this function will only be saved when the user saves the entry.
 
 | Param | Type                                                              | Description                 |
 | ----- | ----------------------------------------------------------------- | --------------------------- |
@@ -405,14 +405,14 @@ Sets the data for the current field.
 
 #### field.getData(options) ⇒ <code>Object</code> \| <code>string</code> \| <code>number</code>
 
-Gets the data of the current field
+Gets the data of the current field.
 
 **Kind**: instance method of [<code>Field</code>](#Field)
 **Returns**: <code>Object</code> \| <code>string</code> \| <code>number</code> - Returns the field data.
 
 | Param            | Type                 | Description                                                                                                                                                                                |
 | ---------------- | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| options          | <code>Object</code>  | Options object for get Data method.                                                                                                                                                        |
+| options          | <code>Object</code>  | Options object for getData() method.                                                                                                                                                        |
 | options.resolved | <code>boolean</code> | If the resolved parameter is set to true for the File field, then the method will return a resolved asset object along with all the field metadata, e.g. 'field.getData({resolved:true})'. |
 
 
@@ -430,7 +430,7 @@ The field.onChange() function is called when another extension programmatically 
 
 ### EntryFieldLocation.entry :
 
-This method gives you the entry, object which allows you to interact with the current entry. Please note that it is not available for the Dashboard Widget location.
+This method gives you the entry, object which allows you to interact with the current entry. Please note that it is not available for the Dashboard Widget UI location.
 
 **Kind**: instance property of [EntryFieldLocation](#EntryFieldLocation)
 
@@ -548,7 +548,7 @@ The onPublish() function executes the callback function every time an entry has 
 
 #### entry.getTags(options?) ⇒ <code>Array</code>
 
-Gets the tags of the current entry. This method gets the saved tags by default, but you can also get the draft tags by setting the options.useUnsavedSchema parameter.
+Gets the tags of the current entry. By default, this method gets the saved tags, but you can get the draft tags by setting the options.useUnsavedSchema parameter.
 
 **Kind**: instance method of [<code>Entry</code>](#Entry)
 **Returns**: <code>Array</code> - List of tags
@@ -561,7 +561,7 @@ Gets the tags of the current entry. This method gets the saved tags by default, 
 
 #### entry.setTags(tags) ⇒ <code>Array</code>
 
-Sets the tags in the entry
+Sets the tags in the entry.
 
 **Kind**: instance method of [<code>Entry</code>](#Entry)
 **Returns**: <code>Array</code> - List of tags
@@ -572,7 +572,7 @@ Sets the tags in the entry
 
 ### EntryFieldLocation.frame : [Frame](#Frame)
 
-The frame object provides users with methods that allow them to adjust the size of the iframe containing the location. Note that it is not available for the custom widgets location.
+The frame object provides users with methods that allow them to adjust the size of the iframe containing the UI location.
 
 **Kind**: instance property of [EntryFieldLocation](#EntryFieldLocation)
 
@@ -595,7 +595,7 @@ The frame object provides users with methods that allow them to adjust the size 
 
 #### frame.updateDimension({height?, width?}) ⇒ [Promise](#external_Promise)
 
-This method updates the extension dimension on the Contentstack UI. If the dimension is not provided, it will update the dimension of the extension to the dimension of the content.
+This method updates the extension dimensions on the Contentstack UI. If the dimensions are not provided, it will update the dimensions of the extension to the dimensions of the content.
 
 **Kind**: instance method of [frame](#frame)
 
