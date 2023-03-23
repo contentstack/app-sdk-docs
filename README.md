@@ -341,7 +341,7 @@ This method updates installation data for the app.
 
 ## EntryFieldLocation
 
-It is an object representing the current Custom field reference in the Contentstack UI.
+It is an object representing the entry field UI location in the Contentstack UI.
 
 **Kind**: The instance property of [AppConfigWidget](#supported-locations)
 
@@ -355,7 +355,7 @@ It is an object representing the current Custom field reference in the Contentst
 
 ### EntryFieldLocation.field : [Field](#Field)
 
-This method gives you the custom field object which allows you to interact with the field. Please note that it is available only for the Custom Field UI location.
+This method gives you the current field object which allows you to interact with the field.
 
 **Kind**: instance property of [EntryFieldLocation](#EntryFieldLocation)
 
@@ -430,7 +430,7 @@ The field.onChange() function is called when another extension programmatically 
 
 ### EntryFieldLocation.entry :
 
-This method gives you the entry, object which allows you to interact with the current entry. Please note that it is not available for the Dashboard Widget UI location.
+This method gives you the entry, object which allows you to interact with the current entry.
 
 **Kind**: instance property of [EntryFieldLocation](#EntryFieldLocation)
 
