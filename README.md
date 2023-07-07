@@ -26,12 +26,44 @@ Below we have listed some of the top-level objects used in the App SDK.
 -   **[Store](#Store)**: It refers to a class that is used by a location to store your data in the [local storage](#external_localStorage).
 -   **[Stack](#Stack)**: It's a class representing the current stack in the Contentstack UI.
 -   **[Window Frame](#Frame)**: It refers to a class that represents an iframe window from the Contentstack UI.
-
     > **Note**: This class is not available for Custom Widgets.
-
 -   **[Entry](#Entry)**: It's a class that represents an entry from the Contentstack UI.
+    > **Note**: It's not available for the Dashboard Widget extension.
 
-> **Note**: It's not available for the Dashboard Widget extension.
+# Top level Methods
+
+The App SDK provides several top-level methods that retrieve app-related information.
+
+-   **getConfig**: Retrieves the configuration set for the app. This method allows easy access to the app's configuration data set on the app configuration page.
+-   **getCurrentLocation**: Returns the current UI location type of the app.
+-   **getCurrentRegion**: : Retrieves the Contentstack Region on which the app is running.
+-   **getAppVersion**: Returns the version of the app currently running. 
+    > **Note**: The getAppVersion method is not available for JSON RTE Plugins.
+
+
+| Method Name       | Description                                                                   | Return Type                                                                                                                                                                               |
+|-------------------|-------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| getConfig         | Retrieves the configuration set for the app.                                  | Promise\<Object>                                                                                                                                                                          |
+| getCurrentLocation| Gets the type of currently running UI location of the app.                     |"RTE" \| "FIELD" \| "DASHBOARD" \| "WIDGET" \| "APP_CONFIG_WIDGET" \| "ASSET_SIDEBAR_WIDGET" \| "FULL_PAGE_LOCATION" \| "ENTRY_FIELD_LOCATION" \| "FIELD_MODIFIER_LOCATION" |
+| getCurrentRegion  | Gets the Contentstack Region on which the app is running.                      | "UNKNOWN" \| "NA" \| "EU" \| "AZURE_NA" \| "AZURE_EU"                                                                                                                        |
+| getAppVersion     | Gets the version of the app currently running.                                 | Promise\<Number \| null>                                                                                                                                                                         ||
+    
+```js
+// javascript
+ContentstackAppSDK.init().then(async function (appSdk) {
+    // Retrieve the app configuration
+    const appConfig = await appSdk.getConfig();
+
+    // Get the current UI location of the app
+    const currentLocation = appSdk.getCurrentLocation();
+
+    // Get the Contentstack Region of the app
+    const currentRegion = appSdk.getCurrentRegion();
+
+    // Get the version of the app
+    const appVersion = await appSdk.getAppVersion();
+});
+```
 
 # Supported Locations
 
@@ -326,6 +358,7 @@ It's an object representing the current App configuration for the current App in
 
 -   [.getInstallationData](#AppConfigWidget+getInstallationData) : [InstallationData](#InstallationData)
 -   [.setInstallationData](#AppConfigWidget+setInstallationData) : [InstallationData](#InstallationData)
+-   [.setValidity(isValid: boolean, options: { message: string })](#appconfig-setValidity) : void
 
 ### appconfig.getInstallationData : InstallationData
 
@@ -338,6 +371,31 @@ This method gives you the complete installation data.
 This method updates installation data for the app.
 
 **Kind**: instance property of [AppConfigWidget](#AppConfigWidget)
+
+### <span id="appconfig-setValidity">appconfig.setValidity(isValid: boolean, options: { message: string }) : Promise<void></span>
+
+The `appconfig.setValidity` method is used to set the validation state of the app in the Contentstack App Config location. By invoking this method with the `isValid` parameter as `false`, the user will be prevented from saving the configuration. Additionally, an optional `message` parameter can be provided to display a custom error message.
+
+### Parameters
+
+- `isValid` (boolean): Specifies whether the app configuration is considered valid (`true`) or invalid (`false`).
+- `options` (object): An optional object containing the following property:
+  - `message` (string): A custom error message to be displayed when the configuration is invalid.
+
+**Kind**: instance property of [AppConfigWidget](#AppConfigWidget)
+
+```javascript
+// JavaScript
+
+// Initialize ContentstackAppSDK
+ContentstackAppSDK.init().then(async function (appSdk) {
+    // Get the AppConfigWidget object
+    const appConfigWidget = await appSdk.location.AppConfigWidget;
+
+    // Set validity to false, notifying the user that incorrect inputs have been entered.
+    appConfigWidget.installation.setValidity(false, { message: 'Please enter valid inputs' });
+});
+```
 
 ## EntryFieldLocation
 
