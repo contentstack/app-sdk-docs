@@ -48,6 +48,8 @@ The App SDK provides several top-level methods that retrieve app-related informa
 | getCurrentRegion  | Gets the Contentstack Region on which the app is running.                      | "UNKNOWN" \| "NA" \| "EU" \| "AZURE_NA" \| "AZURE_EU"                                                                                                                        |
 | getAppVersion     | Gets the version of the app currently running.                                 | Promise\<Number \| null>                                                                                                                                                                         ||
     
+**Example**
+
 ```js
 // javascript
 ContentstackAppSDK.init().then(async function (appSdk) {
@@ -73,7 +75,7 @@ Locations refers to the position or the placement of the app (sidebar widget, cu
 -   **[DashboardWidget](#DashboardWidget)**: It's an object representing the Dashboard widget reference in the Contentstack UI.
 -   **[SidebarWidget](#SidebarWidget)**: It's an object representing the current Sidebar widget reference in the Contentstack UI.
 -   **[AppConfigWidget](#AppConfigWidget)**: It's an object representing the current App configuration for the current App in the Contentstack UI.
--   **[EntryfieldLocation](#EntryFieldLocation)**: It's an object representing the current Entry field reference over the field in the Contentstack UI.
+-   **[FieldModifierLocation](#FieldModifierLocation)**: It's an object representing the field modifier reference over the field in the Contentstack UI.
 
 # External
 
@@ -144,7 +146,7 @@ ContentstackAppSDK.init().then(function (appSdk) {
     // fetch app configuration
     var appConfig = await appSdk.getConfig();
 
-    // fetch entry field information
+    // fetch entry information
     var fieldData = await customField.entry.getData();
 });
 ```
@@ -162,7 +164,7 @@ ContentstackAppSDK.init().then(function (location) {
     // fetch app configuration
     var appConfig = await appSdk.getConfig();
 
-    // fetch entry field information
+    // fetch entry information
     var fieldData = await sidebarWidget.entry.getData();
 });
 ```
@@ -185,21 +187,21 @@ ContentstackAppSDK.init().then(function (location) {
 });
 ```
 
-**Example** _(Entry field location)_
+**Example** _(Field Modifier location)_
 
 ```js
 // javascript
 ContentstackAppSDK.init().then(function (appSdk) {
-    // Get EntryFieldLocation object
+    // Get FieldModifierLocation object
     // this is only initialized on the Entry create/edit page.
     // on other locations this will return undefined.
-    var entryFieldLocation = await appSdk.location.EntryFieldLocation;
+    var fieldModifierLocation = await appSdk.location.FieldModifierLocation;
 
     // fetch app configuration
     var appConfig = await appSdk.getConfig();
 
-    // fetch entry field information
-    var fieldData = await entryFieldLocation.entry.getData();
+    // fetch entry information
+    var fieldData = await fieldModifierLocation.entry.getData();
 });
 ```
 
@@ -397,13 +399,13 @@ ContentstackAppSDK.init().then(async function (appSdk) {
 });
 ```
 
-## EntryFieldLocation
+## FieldModifierLocation
 
-It is an object representing the entry field UI location in the Contentstack UI.
+It is an object representing the field modifier UI location in the Contentstack UI.
 
-**Kind**: The instance property of [AppConfigWidget](#supported-locations)
+**Kind**: The instance property of [FieldModifierLocation](#supported-locations)
 
-[EntryFieldLocation](#EntryFieldLocation)
+[FieldModifierLocation](#FieldModifierLocation)
 
 -   [.field](#Location+field) : [Field](#Field)
 -   [.entry](#Location+entry) : [Entry](#Entry)
@@ -411,11 +413,11 @@ It is an object representing the entry field UI location in the Contentstack UI.
 -   [.stack](#stack) : [Stack](#stack)
 
 
-### EntryFieldLocation.field : [Field](#Field)
+### FieldModifierLocation.field : [Field](#Field)
 
 This method gives you the current field object which allows you to interact with the field.
 
-**Kind**: instance property of [EntryFieldLocation](#EntryFieldLocation)
+**Kind**: instance property of [FieldModifierLocation](#FieldModifierLocation)
 
 -   [Field](#Field)
     -   [.uid](#Field+uid) : <code>string</code>
@@ -486,11 +488,11 @@ The field.onChange() function is called when another extension programmatically 
 | -------- | --------------------- | ----------------------------------------------------- |
 | callback | <code>function</code> | The function to be called when an entry is published. |
 
-### EntryFieldLocation.entry :
+### FieldModifierLocation.entry :
 
 This method gives you the entry, object which allows you to interact with the current entry.
 
-**Kind**: instance property of [EntryFieldLocation](#EntryFieldLocation)
+**Kind**: instance property of [FieldModifierLocation](#FieldModifierLocation)
 
 -   [Entry](#Entry)
     -   [.content_type](#entry) : <code>Object</code>
@@ -504,7 +506,7 @@ This method gives you the entry, object which allows you to interact with the cu
     -   [.getTags()](#entrygettagsoptions--array)
     -   [.setTags(tags)](#entrysettagstags--array)
 
-<a name="EntryFieldLocation+Entry+content_type"></a>
+<a name="FieldModifierLocation+Entry+content_type"></a>
 
 #### entry.content_type : <code>Object</code>
 
@@ -512,7 +514,7 @@ Gets the content type of the current entry.
 
 **Kind**: instance property of [<code>Entry</code>](#Entry)
 
-<a name="EntryFieldLocation+Entry+locale"></a>
+<a name="FieldModifierLocation+Entry+locale"></a>
 
 #### entry.locale : <code>string</code>
 
@@ -520,7 +522,7 @@ Gets the locale of the current entry.
 
 **Kind**: instance property of [<code>Entry</code>](#Entry)
 
-<a name="EntryFieldLocation+Entry+getData"></a>
+<a name="FieldModifierLocation+Entry+getData"></a>
 
 #### entry.getData() ⇒ <code>Object</code>
 
@@ -529,7 +531,7 @@ Gets data of the current entry.
 **Kind**: instance method of [<code>Entry</code>](#Entry)
 **Returns**: <code>Object</code> - Returns entry data.
 
-<a name="EntryFieldLocation+Entry+getField"></a>
+<a name="FieldModifierLocation+Entry+getField"></a>
 
 #### entry.getField(uid, options?) ⇒ <code>Object</code>
 
@@ -554,7 +556,7 @@ var fieldUid = field.uid;
 var fieldData = field.getData();
 ```
 
-<a name="EntryFieldLocation+Entry+onSave"></a>
+<a name="FieldModifierLocation+Entry+onSave"></a>
 
 #### entry.onSave(callback)
 
@@ -566,7 +568,7 @@ This onSave() function executes the callback function every time an entry is sav
 | -------- | --------------------- | ------------------------------------------------- |
 | callback | <code>function</code> | The function to be called when an entry is saved. |
 
-<a name="EntryFieldLocation+Entry+onChange"></a>
+<a name="FieldModifierLocation+Entry+onChange"></a>
 
 #### entry.onChange(callback)
 
@@ -578,7 +580,7 @@ The onChange() function executes the callback function every time an entry has b
 | -------- | --------------------- | --------------------------------------------------- |
 | callback | <code>function</code> | The function to be called when an entry is updated. |
 
-<a name="EntryFieldLocation+Entry+onPublish"></a>
+<a name="FieldModifierLocation+Entry+onPublish"></a>
 
 #### entry.onPublish(callback)
 
@@ -590,7 +592,7 @@ The onPublish() function executes the callback function every time an entry has 
 | -------- | --------------------- | ----------------------------------------------------- |
 | callback | <code>function</code> | The function to be called when an entry is published. |
 
-<a name="EntryFieldLocation+Entry+onUnPublish"></a>
+<a name="FieldModifierLocation+Entry+onUnPublish"></a>
 
 #### entry.onUnPublish(callback)
 
@@ -602,7 +604,7 @@ The onPublish() function executes the callback function every time an entry has 
 | -------- | --------------------- | ------------------------------------------------------- |
 | callback | <code>function</code> | The function to be called when an entry is unpublished. |
 
-<a name="EntryFieldLocation+Entry+getTags"></a>
+<a name="FieldModifierLocation+Entry+getTags"></a>
 
 #### entry.getTags(options?) ⇒ <code>Array</code>
 
@@ -615,7 +617,7 @@ Gets the tags of the current entry. By default, this method gets the saved tags,
 | ------------------------ | -------------------- | ---------------------------------------- |
 | options.useUnsavedSchema | <code>boolean</code> | Gets the unsaved draft data of the field |
 
-<a name="EntryFieldLocation+Entry+setTags"></a>
+<a name="FieldModifierLocation+Entry+setTags"></a>
 
 #### entry.setTags(tags) ⇒ <code>Array</code>
 
@@ -628,27 +630,23 @@ Sets the tags in the entry.
 | ----- | ------------------ | -------------------- |
 | tags  | <code>Array</code> | The tags to be saved |
 
-### EntryFieldLocation.frame : [Frame](#Frame)
 
-The frame object provides users with methods that allow them to adjust the size of the iframe containing the UI location.
-
-**Kind**: instance property of [EntryFieldLocation](#EntryFieldLocation)
-
-### EntryFieldLocation.stack : [Stack](#Stack)
+### FieldModifierLocation.stack : [Stack](#Stack)
 
 This method returns the stack object which allows users to read and manipulate a range of objects in a stack.
 
-**Kind**: instance property of [EntryFieldLocation](#EntryFieldLocation)
+**Kind**: instance property of [FieldModifierLocation](#FieldModifierLocation)
 
-### EntryFieldLocation.frame: [Frame](#Frame)
+### FieldModifierLocation.frame: [Frame](#Frame)
 
-The frame object provides users with methods that allow them to adjust the size of the iframe containing the location.
+The frame object provides users with methods that allow them to adjust the size of the iframe containing the UI location.
 
-**Kind**: instance property of [EntryFieldLocation](#EntryFieldLocation)
+**Kind**: instance property of [FieldModifierLocation](#FieldModifierLocation)
 
 -   [.updateDimension({height?, width?})](#frameupdatedimensionheight-width--promise) ⇒ [Promise](#external_Promise)
 -   [.enableAutoResizing()](#frame+enableAutoResizing) ⇒ [frame](#frame)
 -   [.disableAutoResizing()](#frame+disableAutoResizing) ⇒ [frame](#frame)
+-   [.preventFrameClose(state: boolean)](#frame+preventFrameClose) ⇒ void
 
 
 #### frame.updateDimension({height?, width?}) ⇒ [Promise](#external_Promise)
@@ -680,6 +678,27 @@ This method disables the auto resizing of the extension height.
 **Kind**: instance method of [frame](#frame)
 
 **Returns**: [frame](#frame).
+
+#### frame.preventFrameClose(state: boolean) ⇒ [Promise\<void>](#external_Promise)
+
+The `frame.preventFrameClose` method allows you to manage the default closing behavior of the app when the user clicks outside of its frame. By default, the app is closed in such scenarios. This method enables you to control and customize the closing behavior based on your requirements.
+
+**Kind**: instance method of [frame](#frame)
+
+| **Parameter** | **Type** | **Description**                     |
+| --------- | -------- | --------------------------------------- |
+| state     | boolean  | State to control the default closing behavior. Set to `true` to prevent the frame from closing on click outside, and `false` to revert to the default behavior.
+
+```js
+// JavaScript
+ContentstackAppSDK.init().then(async function (appSdk) {
+    // Get the FieldModifierLocation object
+    const fieldModifierLocation = await appSdk.location.FieldModifierLocation;
+
+    // To disable the automatic closure of the app frame when the user clicks outside
+    fieldModifierLocation.frame.preventFrameClose(true);
+});
+```
 
 ## frame
 
