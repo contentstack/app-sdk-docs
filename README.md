@@ -29,6 +29,7 @@ Below we have listed some of the top-level objects used in the App SDK.
     > **Note**: This class is not available for Custom Widgets.
 -   **[Entry](#Entry)**: It's a class that represents an entry from the Contentstack UI.
     > **Note**: It's not available for the Dashboard Widget extension.
+-   **[Modal](#Modal)**: TIt's a class that represents a modal dialog opened from the app within the Contentstack UI.
 
 # Top level Methods
 
@@ -3019,3 +3020,23 @@ IMetadateDelete {
 ```
 
 This method deletes existing metadata for an asset or entry. It accepts metadata configuration as required arguments. This config contains basic details that you need to identify the metadata object you want to delete.
+
+## Modal
+
+The `Modal` class represents a modal dialog opened from the app within the Contentstack UI. It is a powerful feature of the App SDK that enables apps to open modal dialogues, providing an enhanced user experience.
+
+> **Note**: Starting from v1.6.0 of the App SDK, modals now open to take the full screen by default, without any additional user action.
+
+### `setBackgroundElement(element: HTMLElement)`
+
+This method allows developers to specify a custom HTML element to be displayed in the background in place of the app iframe when the modal is opened. By default, the App SDK automatically selects an element to be shown in the background. However, this method provides the flexibility to choose a different element if desired.
+
+**Example**
+
+```javascript
+// JavaScript
+ContentstackAppSDK.init().then(async function (appSdk) {
+    // Set the background element to be shown
+    appSdk.modal.setBackgroundElement(element);
+});
+```
