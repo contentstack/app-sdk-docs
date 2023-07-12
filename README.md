@@ -29,7 +29,7 @@ Below we have listed some of the top-level objects used in the App SDK.
     > **Note**: This class is not available for Custom Widgets.
 -   **[Entry](#Entry)**: It's a class that represents an entry from the Contentstack UI.
     > **Note**: It's not available for the Dashboard Widget extension.
--   **[Modal](#Modal)**: TIt's a class that represents a modal dialog opened from the app within the Contentstack UI.
+-   **[Modal](#Modal)**: It's a class that represents a modal dialog opened from the app within the Contentstack UI.
 
 # Top level Methods
 
@@ -38,7 +38,7 @@ The App SDK provides several top-level methods that retrieve app-related informa
 -   **getConfig**: Retrieves the configuration set for the app. This method allows easy access to the app's configuration data set on the app configuration page.
 -   **getCurrentLocation**: Returns the current UI location type of the app.
 -   **getCurrentRegion**: : Retrieves the Contentstack Region on which the app is running.
--   **getAppVersion**: Returns the version of the app currently running. 
+-   **getAppVersion**: Returns the version of the app currently installed. 
     > **Note**: The getAppVersion method is not available for JSON RTE Plugins.
 
 
@@ -47,7 +47,7 @@ The App SDK provides several top-level methods that retrieve app-related informa
 | getConfig         | Retrieves the configuration set for the app.                                  | Promise\<Object>                                                                                                                                                                          |
 | getCurrentLocation| Gets the type of currently running UI location of the app.                     |"RTE" \| "FIELD" \| "DASHBOARD" \| "WIDGET" \| "APP_CONFIG_WIDGET" \| "ASSET_SIDEBAR_WIDGET" \| "FULL_PAGE_LOCATION" \| "ENTRY_FIELD_LOCATION" \| "FIELD_MODIFIER_LOCATION" |
 | getCurrentRegion  | Gets the Contentstack Region on which the app is running.                      | "UNKNOWN" \| "NA" \| "EU" \| "AZURE_NA" \| "AZURE_EU"                                                                                                                        |
-| getAppVersion     | Gets the version of the app currently running.                                 | Promise\<Number \| null>                                                                                                                                                                         ||
+| getAppVersion     | Gets the version of the app currently installed.                                 | Promise\<Number \| null>                                                                                                                                                                         ||
     
 **Example**
 
@@ -76,7 +76,7 @@ Locations refers to the position or the placement of the app (sidebar widget, cu
 -   **[DashboardWidget](#DashboardWidget)**: It's an object representing the Dashboard widget reference in the Contentstack UI.
 -   **[SidebarWidget](#SidebarWidget)**: It's an object representing the current Sidebar widget reference in the Contentstack UI.
 -   **[AppConfigWidget](#AppConfigWidget)**: It's an object representing the current App configuration for the current App in the Contentstack UI.
--   **[FieldModifierLocation](#FieldModifierLocation)**: It's an object representing the field modifier reference over the field in the Contentstack UI.
+-   **[FieldModifierLocation](#FieldModifierLocation)**: It's an object representing the Field Modifier reference over the field in the Contentstack UI.
 
 # External
 
@@ -682,7 +682,7 @@ This method disables the auto resizing of the extension height.
 
 #### frame.preventFrameClose(state: boolean) ⇒ [Promise\<void>](#external_Promise)
 
-The `frame.preventFrameClose` method allows you to manage the default closing behavior of the app when the user clicks outside of its frame. By default, the app is closed in such scenarios. This method enables you to control and customize the closing behavior based on your requirements.
+The `frame.preventFrameClose` method allows you to manage the default closing behavior of the app when the user clicks outside its frame. By default, the app is closed in such scenarios. This method enables you to control and customize the closing behavior based on your requirements.
 
 **Kind**: instance method of [frame](#frame)
 
@@ -3023,13 +3023,13 @@ This method deletes existing metadata for an asset or entry. It accepts metadata
 
 ## Modal
 
-The `Modal` class represents a modal dialog opened from the app within the Contentstack UI. It is a powerful feature of the App SDK that enables apps to open modal dialogues, providing an enhanced user experience.
+The `Modal` class represents a modal dialog opened from the app within the Contentstack UI. This feature of the App SDK enables apps to open modal dialogues, providing an enhanced user experience.
 
 > **Note**: Starting from v1.6.0 of the App SDK, modals now open to take the full screen by default, without any additional user action.
 
 ### `setBackgroundElement(element: HTMLElement)`
 
-This method allows developers to specify a custom HTML element to be displayed in the background in place of the app iframe when the modal is opened. By default, the App SDK automatically selects an element to be shown in the background. However, this method provides the flexibility to choose a different element if desired.
+This method allows developers to specify a custom HTML element to be displayed in the background, in place of the app iframe when the modal is opened. By default, the App SDK automatically selects an element to be shown in the background. However, this method provides the flexibility to choose a different element if required.
 
 **Example**
 
