@@ -3,7 +3,7 @@ on:
   pull_request:
     types: [opened]
 jobs:
-  security:
+  security-jira:
     if: ${{ github.actor == 'dependabot[bot]' || github.actor == 'snyk-bot' || contains(github.event.pull_request.head.ref, 'snyk-fix-')  || contains(github.event.pull_request.head.ref, 'snyk-upgrade-')}}
     runs-on: ubuntu-latest
     steps:
@@ -25,5 +25,9 @@ jobs:
           description: |
             PR: ${{ github.event.pull_request.html_url }}
 
-            ${{ github.event.pull_request.body }}
           fields: "${{ secrets.JIRA_FIELDS }}"
+      - name: Transition issue
+        uses: atlassian/gajira-transition@v3
+        with:
+          issue: ${{ steps.create.outputs.issue }}
+          transition: ${{ secrets.JIRA_TRANSITION }}
