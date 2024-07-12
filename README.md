@@ -827,6 +827,8 @@ It is a class representing the current stack in Contentstack UI.
 -   [.getAllStacks(options)](#stackgetallstacksoptions-orguid---params---promiseobject): [Promise](#promise)
 -   [.getCurrentBranch()](#stackgetcurrentbranch--branchdetail--null) ⇒ Object | null
 -   [.getAllBranch()](#stackgetallbranches--branchdetail--null) ⇒ Object[]
+-   [.getGlobalField(uid, params)](#Stack+getGlobalField) ⇒ Object
+-   [.getGlobalFields(query, params)](#Stack+getGlobalFields) ⇒ Object
 
 ### stack.ContentType
 
@@ -1838,6 +1840,32 @@ BranchDetail {
     }[];
 }
 ```
+
+### stack.getGlobalField(uid, params) ⇒ Object
+
+This API allows you to retrieve data of a single global field of a stack using the [Global Field API](https://www.contentstack.com/docs/developers/apis/content-management-api#get-single-global-field) requests. This method returns a Promise object.
+
+**Kind**: instance method of [Stack](#Stack)
+
+**Returns**: Object - A promise object which will be resolved with global field details.
+
+| **Parameter** | **Type** | **Description**                      |
+| :------------ | :------- | :----------------------------------- |
+| uid           | string   | UID of the desired global field      |
+| params        | Object   | Optional parameters for the GET call |
+
+### stack.getGlobalFields(query, params) ⇒ Object
+
+This API allows you to retrieve data of all global fields of a stack using the [Global Fields API](https://www.contentstack.com/docs/developers/apis/content-management-api#get-all-global-fields) requests. This method returns a Promise object.
+
+**Kind**: instance method of [Stack](#Stack)
+
+**Returns**: Object - A promise object which will be resolved with global field details.
+
+| **Parameter** | **Type** | **Description**                      |
+| :------------ | :------- | :----------------------------------- |
+| query         | Object   | Query for the GET call               |
+| params        | Object   | Optional parameters for the GET call |
 
 ## The Store Class used by an extension to store your data in [localStorage](#external_localStorage).
 
