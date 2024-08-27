@@ -829,6 +829,7 @@ It is a class representing the current stack in Contentstack UI.
 -   [.getAllBranch()](#stackgetallbranches--branchdetail--null) ⇒ Object[]
 -   [.getGlobalField(uid, params)](#Stack+getGlobalField) ⇒ Object
 -   [.getGlobalFields(query, params)](#Stack+getGlobalFields) ⇒ Object
+-   [.getVariantById(variant_uid)](#Stack+getVariantById) ⇒ Object
 
 ### stack.ContentType
 
@@ -1840,6 +1841,17 @@ BranchDetail {
     }[];
 }
 ```
+### stack.getVariantById(variant_uid) ⇒ Object
+
+This API allows you to retrieve data of a single entry variant of a stack using the [Variants API](#) requests. This method returns a Promise object.
+
+**Kind**: instance method of [Stack](#Stack)
+
+**Returns**: Object - A promise object which will be resolved with variant entry details.
+
+| **Parameter** | **Type** | **Description**                      |
+| :------------ | :------- | :----------------------------------- |
+| variant_uid   | string   | variant UID of desired entry |
 
 ### stack.getGlobalField(uid, params) ⇒ Object
 
