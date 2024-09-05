@@ -791,7 +791,7 @@ It is a class representing the current stack in Contentstack UI.
             -   [.includeOwner()](#Stack+ContentType+Entry+includeOwner) ⇒ [Entry](#Stack+ContentType+Entry)
             -   [.getLanguages()](#Stack+ContentType+Entry+getLanguages) ⇒ [Promise](#external_Promise)
             -   [.unlocalize(locale)](#Stack+ContentType+Entry+unlocalize) ⇒ [Promise](#external_Promise)
-            -   [.publish(payload)](#Stack+ContentType+Entry+publish) ⇒ [Promise](#external_Promise)
+            -   [.publish(payload, api_version="")](#Stack+ContentType+Entry+publish) ⇒ [Promise](#external_Promise)
             -   [.unpublish(payload)](#Stack+ContentType+Entry+unpublish) ⇒ [Promise](#external_Promise)
             -   [.setWorkflowStage(payload)](#Stack+ContentType+Entry+setWorkflowStage) ⇒ [Promise](#external_Promise)
             -   [.update(payload, [locale])](#Stack+ContentType+Entry+update) ⇒ [Promise](#external_Promise)
@@ -808,7 +808,7 @@ It is a class representing the current stack in Contentstack UI.
         -   [.addQuery(key, value)](#Stack+Asset+addQuery) ⇒ [Asset](#Stack+Asset)
         -   [.getReferences()](#Stack+Asset+getReferences) ⇒ [Promise](#external_Promise)
         -   [.delete()](#Stack+Asset+delete) ⇒ [Promise](#external_Promise)
-        -   [.publish(payload)](#Stack+Asset+publish) ⇒ [Promise](#external_Promise)
+        -   [.publish(payload, api_version="")](#Stack+Asset+publish) ⇒ [Promise](#external_Promise)
         -   [.unpublish(payload)](#Stack+Asset+unpublish) ⇒ [Promise](#external_Promise)
     -   _static_
         -   [.Query()](#Stack+Asset.Query) ⇒ [Query](#Query)
@@ -858,7 +858,7 @@ It is a class representing the current stack in Contentstack UI.
         -   [.includeOwner()](#Stack+ContentType+Entry+includeOwner) ⇒ [Entry](#Stack+ContentType+Entry)
         -   [.getLanguages()](#Stack+ContentType+Entry+getLanguages) ⇒ [Promise](#external_Promise)
         -   [.unlocalize(locale)](#Stack+ContentType+Entry+unlocalize) ⇒ [Promise](#external_Promise)
-        -   [.publish(payload)](#Stack+ContentType+Entry+publish) ⇒ [Promise](#external_Promise)
+        -   [.publish(payload, api_version="")](#Stack+ContentType+Entry+publish) ⇒ [Promise](#external_Promise)
         -   [.unpublish(payload)](#Stack+ContentType+Entry+unpublish) ⇒ [Promise](#external_Promise)
         -   [.setWorkflowStage(payload)](#Stack+ContentType+Entry+setWorkflowStage) ⇒ [Promise](#external_Promise)
         -   [.update(payload, [locale])](#Stack+ContentType+Entry+update) ⇒ [Promise](#external_Promise)
@@ -902,7 +902,7 @@ extension.stack.ContentType('content_type_uid')
         -   [.includeOwner()](#Stack+ContentType+Entry+includeOwner) ⇒ [Entry](#Stack+ContentType+Entry)
         -   [.getLanguages()](#Stack+ContentType+Entry+getLanguages) ⇒ [Promise](#external_Promise)
         -   [.unlocalize(locale)](#Stack+ContentType+Entry+unlocalize) ⇒ [Promise](#external_Promise)
-        -   [.publish(payload)](#Stack+ContentType+Entry+publish) ⇒ [Promise](#external_Promise)
+        -   [.publish(payload, api_version="")](#Stack+ContentType+Entry+publish) ⇒ [Promise](#external_Promise)
         -   [.unpublish(payload)](#Stack+ContentType+Entry+unpublish) ⇒ [Promise](#external_Promise)
         -   [.setWorkflowStage(payload)](#Stack+ContentType+Entry+setWorkflowStage) ⇒ [Promise](#external_Promise)
         -   [.update(payload, [locale])](#Stack+ContentType+Entry+update) ⇒ [Promise](#external_Promise)
@@ -1250,7 +1250,7 @@ This method is used to unlocalize an entry.
 extension.stack.ContentType('contenttype_uid').Entry('bltsomething123').unlocalize('fr-fr').then(...).catch(...);
 ```
 
-##### entry.publish(payload) ⇒ [Promise](#external_Promise)
+##### entry.publish(payload, api_version="") ⇒ [Promise](#external_Promise)
 
 This method lets you publish an entry either immediately or schedule it to be published automatically at a later date/time.
 
@@ -1259,6 +1259,7 @@ This method lets you publish an entry either immediately or schedule it to be pu
 | **Parameter** | **Type** | **Description**          |
 | :------------ | :------- | :----------------------- |
 | payload       | object   | Payload for the request. |
+| api_version   | string   | Send api version in headers.(optional argument) |
 
 **Example**
 
@@ -1411,7 +1412,7 @@ extension.stack.ContentType('content_type_uid').Entry.create({
     -   [.addQuery(key, value)](#Stack+Asset+addQuery) ⇒ [Asset](#Stack+Asset)
     -   [.getReferences()](#Stack+Asset+getReferences) ⇒ [Promise](#external_Promise)
     -   [.delete()](#Stack+Asset+delete) ⇒ [Promise](#external_Promise)
-    -   [.publish(payload)](#Stack+Asset+publish) ⇒ [Promise](#external_Promise)
+    -   [.publish(payload, api_version="")](#Stack+Asset+publish) ⇒ [Promise](#external_Promise)
     -   [.unpublish(payload)](#Stack+Asset+unpublish) ⇒ [Promise](#external_Promise)
 -   _static_
     -   [.Query()](#Stack+Asset.Query) ⇒ [Query](#Query)
@@ -1570,7 +1571,7 @@ Additional Resource: Learn more about [Deleting an Asset](https://www.contentsta
 extension.stack.Asset("uid").delete().then().catch();
 ```
 
-#### asset.publish(payload) ⇒ [Promise](#external_Promise)
+#### asset.publish(payload, api_version="") ⇒ [Promise](#external_Promise)
 
 This method allows you to publish the asset either immediately or schedule the publish for a later date/time.
 
@@ -1579,6 +1580,7 @@ This method allows you to publish the asset either immediately or schedule the p
 | **Parameter** | **Type** | **Description**          |
 | :------------ | :------- | :----------------------- |
 | payload       | object   | Payload for the request. |
+| api_version   | string   | Send api version in headers.(optional argument) |
 
 **Example**
 
