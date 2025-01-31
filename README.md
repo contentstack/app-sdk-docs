@@ -78,6 +78,7 @@ Locations refers to the position or the placement of the app (sidebar widget, cu
 -   **[AppConfigWidget](#AppConfigWidget)**: It's an object representing the current App configuration for the current App in the Contentstack UI.
 -   **[FieldModifierLocation](#FieldModifierLocation)**: It's an object representing the Field Modifier reference over the field in the Contentstack UI.
 -   **[ContentTypeSidebarWidget](#ContentTypeSidebarWidget)**: It's an object representing the Content Type Sidebar Widget in the Contentstack UI.
+-   **[OrganizationFullPage](#OrganizationFullPage)**: It's an object representing the Organization Full Page Widget in the Contentstack UI.
 
 # External
 
@@ -727,6 +728,35 @@ Executes the specified callback function each time the content type is saved. Th
 | callback | <code>function</code> | Function called with the updated content type data on save event |
 
 **Throws**: Will throw an error if the provided `callback` is not a function.
+
+**Example**
+
+```js
+const sidebarWidget = new ContentTypeSidebarWidget(
+  initData,
+  connection,
+  emitter
+);
+
+// Register onSave callback to execute on each save event.
+sidebarWidget.onSave((updatedContentType) => {
+  console.log("Content type saved:", updatedContentType);
+});
+```
+
+## OrganizationFullPage
+
+It is an object representing the Organization Full Page Widget in the Contentstack UI.
+
+**Kind**: The instance property of [OrganizationFullPage](#supported-locations)
+
+### OrganizationFullPage.currentOrganization ⇒ [ContentType](#ContentType)
+
+This method retrieves the current content type data of the sidebar widget.
+
+**Kind**: instance method of [ContentTypeSidebarWidget](#ContentTypeSidebarWidget)
+
+**Returns**: [ContentType](#ContentType) - The current content type data.
 
 **Example**
 
