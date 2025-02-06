@@ -13,7 +13,7 @@ npm install @contentstack/app-sdk
 Alternatively, you can add it inside script tag:
 
 ```html
-<script src="https://unpkg.com/@contentstack/app-sdk/dist/index.js"></script>
+<script src="https://unpkg.com/@contentstack/app-sdk/dist/index.js" integrity="sha512-mcJn/xSGuDGTvKiBvPfjLxbLfRpByRNzdbyldfpNie10BdFHgy7hRxACw3mQ3xbx752N85eqgMPIm8lb4Aq8pw==" crossorigin="anonymous"></script>
 ```
 
 The above command will install the **app-sdk** library in your project which contains the necessary toolkit you need to manage installed apps on specific locations.
