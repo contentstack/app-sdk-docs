@@ -13,7 +13,7 @@ npm install @contentstack/app-sdk
 Alternatively, you can add it inside script tag:
 
 ```html
-<script src="https://unpkg.com/@contentstack/app-sdk/dist/index.js"></script>
+<script src="https://unpkg.com/@contentstack/app-sdk/dist/index.js" integrity="sha512-mcJn/xSGuDGTvKiBvPfjLxbLfRpByRNzdbyldfpNie10BdFHgy7hRxACw3mQ3xbx752N85eqgMPIm8lb4Aq8pw==" crossorigin="anonymous"></script>
 ```
 
 The above command will install the **app-sdk** library in your project which contains the necessary toolkit you need to manage installed apps on specific locations.
@@ -77,6 +77,7 @@ Locations refers to the position or the placement of the app (sidebar widget, cu
 -   **[SidebarWidget](#SidebarWidget)**: It's an object representing the current Sidebar widget reference in the Contentstack UI.
 -   **[AppConfigWidget](#AppConfigWidget)**: It's an object representing the current App configuration for the current App in the Contentstack UI.
 -   **[FieldModifierLocation](#FieldModifierLocation)**: It's an object representing the Field Modifier reference over the field in the Contentstack UI.
+-   **[ContentTypeSidebarWidget](#ContentTypeSidebarWidget)**: It's an object representing the Content Type Sidebar Widget in the Contentstack UI.
 
 # External
 
@@ -698,6 +699,47 @@ ContentstackAppSDK.init().then(async function (appSdk) {
 
     // To disable the automatic closure of the app frame when the user clicks outside
     fieldModifierLocation.frame.preventFrameClose(true);
+});
+```
+
+## ContentTypeSidebarWidget
+
+It is an object representing the Content Type Sidebar Widget in the Contentstack UI.
+
+**Kind**: The instance property of [ContentTypeSidebarWidget](#supported-locations)
+
+### ContentTypeSidebarWidget.getData() ⇒ [ContentType](#ContentType)
+
+This method retrieves the current content type data of the sidebar widget.
+
+**Kind**: instance method of [ContentTypeSidebarWidget](#ContentTypeSidebarWidget)
+
+**Returns**: [ContentType](#ContentType) - The current content type data.
+
+### ContentTypeSidebarWidget.onSave(callback)
+
+Executes the specified callback function each time the content type is saved. The callback function receives the updated content type data as an argument.
+
+**Kind**: instance method of [ContentTypeSidebarWidget](#ContentTypeSidebarWidget)
+
+| Param    | Type                  | Description                                                      |
+| -------- | --------------------- | ---------------------------------------------------------------- |
+| callback | <code>function</code> | Function called with the updated content type data on save event |
+
+**Throws**: Will throw an error if the provided `callback` is not a function.
+
+**Example**
+
+```js
+const sidebarWidget = new ContentTypeSidebarWidget(
+  initData,
+  connection,
+  emitter
+);
+
+// Register onSave callback to execute on each save event.
+sidebarWidget.onSave((updatedContentType) => {
+  console.log("Content type saved:", updatedContentType);
 });
 ```
 
