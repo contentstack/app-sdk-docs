@@ -78,7 +78,7 @@ Locations refers to the position or the placement of the app (sidebar widget, cu
 -   **[AppConfigWidget](#AppConfigWidget)**: It's an object representing the current App configuration for the current App in the Contentstack UI.
 -   **[FieldModifierLocation](#FieldModifierLocation)**: It's an object representing the Field Modifier reference over the field in the Contentstack UI.
 -   **[ContentTypeSidebarWidget](#ContentTypeSidebarWidget)**: It's an object representing the Content Type Sidebar Widget in the Contentstack UI.
--   **[OrganizationFullPage](#OrganizationFullPage)**: It's an object representing the Organization Full Page Widget in the Contentstack UI.
+-   **[GlobalFullPage](#GlobalFullPage)**: It's an object representing the Global Full Page Widget in the Contentstack UI.
 
 # External
 
@@ -744,13 +744,13 @@ sidebarWidget.onSave((updatedContentType) => {
 });
 ```
 
-## OrganizationFullPage
+## GlobalFullPage
 
-It is an object representing the Organization Full Page Widget in the Contentstack UI.
+It is an object representing the Global Full Page Widget in the Contentstack UI.
 
-**Kind**: The instance property of [OrganizationFullPage](#supported-locations)
+**Kind**: The instance property of [GlobalFullPage](#supported-locations)
 
-### OrganizationFullPage.currentOrganization ⇒ [ContentType](#ContentType)
+### GlobalFullPage.currentOrganization ⇒ [ContentType](#ContentType)
 
 This method retrieves the current content type data of the sidebar widget.
 
