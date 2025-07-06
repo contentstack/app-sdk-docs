@@ -78,6 +78,7 @@ Locations refers to the position or the placement of the app (sidebar widget, cu
 -   **[AppConfigWidget](#AppConfigWidget)**: It's an object representing the current App configuration for the current App in the Contentstack UI.
 -   **[FieldModifierLocation](#FieldModifierLocation)**: It's an object representing the Field Modifier reference over the field in the Contentstack UI.
 -   **[ContentTypeSidebarWidget](#ContentTypeSidebarWidget)**: It's an object representing the Content Type Sidebar Widget in the Contentstack UI.
+- **[GlobalFullPageWidget](#GlobalFullPageWidget)**: It's an object representing the Global Full Page Widget in the Contentstack UI.
 
 # External
 
@@ -150,6 +151,9 @@ ContentstackAppSDK.init().then(function (appSdk) {
 
     // fetch entry information
     var fieldData = await customField.entry.getData();
+
+    // fetch draft entry information (including unsaved changes)
+    var draftData = await customField.entry.getDraftData();
 });
 ```
 
@@ -168,6 +172,9 @@ ContentstackAppSDK.init().then(function (location) {
 
     // fetch entry information
     var fieldData = await sidebarWidget.entry.getData();
+
+    // fetch draft entry information (including unsaved changes)
+    var draftData = await sidebarWidget.entry.getDraftData();
 });
 ```
 
@@ -204,6 +211,9 @@ ContentstackAppSDK.init().then(function (appSdk) {
 
     // fetch entry information
     var fieldData = await fieldModifierLocation.entry.getData();
+
+    // fetch draft entry information (including unsaved changes)
+    var draftData = await fieldModifierLocation.entry.getDraftData();
 });
 ```
 
@@ -500,6 +510,7 @@ This method gives you the entry, object which allows you to interact with the cu
     -   [.content_type](#entry) : <code>Object</code>
     -   [.locale](#entrylocale--string) : <code>string</code>
     -   [.getData()](#entrygetdata--object) ⇒ <code>Object</code>
+    -   [.getDraftData()](#entrygetdraftdata--object) ⇒ <code>Object</code>
     -   [.getField(uid, options?)](#entrygetfielduid-options--object) ⇒ <code>Object</code>
     -   [.onSave(callback)](#entryonsavecallback)
     -   [.onChange(callback)](#Entry+onChange)
@@ -532,6 +543,24 @@ Gets data of the current entry.
 
 **Kind**: instance method of [<code>Entry</code>](#Entry)
 **Returns**: <code>Object</code> - Returns entry data.
+
+<a name="FieldModifierLocation+Entry+getDraftData"></a>
+
+#### entry.getDraftData() ⇒ <code>Object</code>
+
+Gets the draft data of the current entry, including unsaved changes made in the editor.
+
+**Kind**: instance method of [<code>Entry</code>](#Entry)
+**Returns**: <code>Object</code> - Returns entry draft data in the same format as getData(), but without metadata like UID, version, publish info, etc.
+
+**Note**: This method is particularly useful for accessing entry data that hasn't been saved yet, allowing apps to read what the user has typed in real-time.
+
+**Example**
+
+```js
+var draftData = await entry.getDraftData();
+console.log("Draft Data:", draftData);
+```
 
 <a name="FieldModifierLocation+Entry+getField"></a>
 
@@ -740,6 +769,37 @@ const sidebarWidget = new ContentTypeSidebarWidget(
 // Register onSave callback to execute on each save event.
 sidebarWidget.onSave((updatedContentType) => {
   console.log("Content type saved:", updatedContentType);
+});
+```
+
+## GlobalFullPageWidget
+
+It is an object representing the Global Full Page Widget in the Contentstack UI.
+
+**Kind**: The instance property of [GlobalFullPageWidget](#supported-locations)
+
+### GlobalFullPage.currentOrganization ⇒ [Organization](#Organization)
+
+This method retrieves the current organization details.
+
+**Kind**: instance method of [GlobalFullPageWidget](#GlobalFullPageWidget)
+
+**Returns**: [Organization](#Organization) - The current organization data.
+
+**Example**
+
+```js
+// javascript
+ContentstackAppSDK.init().then(function (appSdk) {
+
+    var globalFullPageWidget = await appSdk.location.GlobalFullPageLocation;
+
+    // fetch app configuration
+    var appConfig = await appSdk.getConfig();
+
+    // fetch current organization information
+    var currentOrganization = globalFullPageWidget.currentOrganization;
+    console.log("Current Organization:", currentOrganization);
 });
 ```
 
