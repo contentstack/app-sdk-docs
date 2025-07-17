@@ -78,7 +78,7 @@ Locations refers to the position or the placement of the app (sidebar widget, cu
 -   **[AppConfigWidget](#AppConfigWidget)**: It's an object representing the current App configuration for the current App in the Contentstack UI.
 -   **[FieldModifierLocation](#FieldModifierLocation)**: It's an object representing the Field Modifier reference over the field in the Contentstack UI.
 -   **[ContentTypeSidebarWidget](#ContentTypeSidebarWidget)**: It's an object representing the Content Type Sidebar Widget in the Contentstack UI.
-- **[GlobalFullPageWidget](#GlobalFullPageWidget)**: It's an object representing the Global Full Page Widget in the Contentstack UI.
+-   **[GlobalFullPageWidget](#GlobalFullPageWidget)**: An object that represents the Global Full Page Widget in the Contentstack UI.
 
 # External
 
@@ -551,9 +551,9 @@ Gets data of the current entry.
 Gets the draft data of the current entry, including unsaved changes made in the editor.
 
 **Kind**: instance method of [<code>Entry</code>](#Entry)
-**Returns**: <code>Object</code> - Returns entry draft data in the same format as getData(), but without metadata like UID, version, publish info, etc.
+**Returns**: <code>Object</code> - Returns the draft data of the entry in the same format as getData(), but excludes metadata such as UID, version, publish information, and more.
 
-**Note**: This method is particularly useful for accessing entry data that hasn't been saved yet, allowing apps to read what the user has typed in real-time.
+**Note**: This method is especially useful for retrieving entry content that has not been saved yet, enabling apps to access what the user is currently typing in real time.
 
 **Example**
 
@@ -774,13 +774,13 @@ sidebarWidget.onSave((updatedContentType) => {
 
 ## GlobalFullPageWidget
 
-It is an object representing the Global Full Page Widget in the Contentstack UI.
+This is an object representing the Global Full Page Widget in the Contentstack UI.
 
 **Kind**: The instance property of [GlobalFullPageWidget](#supported-locations)
 
 ### GlobalFullPage.currentOrganization ⇒ [Organization](#Organization)
 
-This method retrieves the current organization details.
+This method retrieves the current organization's details.
 
 **Kind**: instance method of [GlobalFullPageWidget](#GlobalFullPageWidget)
 
