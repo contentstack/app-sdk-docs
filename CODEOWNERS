@@ -1,5 +1,10 @@
+* @contentstack/marketplace-pr-reviewers
 * @contentstack/ghost-pr-reviewers
 
 .github/workflows/policy-scan.yml @contentstack/security-admin
 
 .github/workflows/issues-jira.yml @contentstack/security-admin
+
+.github/workflows/sca-scan.yml @contentstack/security-admin
+
+**/.snyk @contentstack/security-admin
