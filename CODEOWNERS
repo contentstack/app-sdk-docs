@@ -1,5 +1,4 @@
 * @contentstack/marketplace-pr-reviewers
-* @contentstack/ghost-pr-reviewers
 
 .github/workflows/policy-scan.yml @contentstack/security-admin
 
